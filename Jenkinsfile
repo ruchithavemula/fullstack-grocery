@@ -19,11 +19,11 @@ pipeline {
             steps {
                 
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\style-frontend" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\style-frontend"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-frontend" (
+                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-frontend"
                 )
-                mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\style-frontend"
-                xcopy /E /I /Y frontend\\grocery-frontend\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\style-frontend"
+                mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-frontend"
+                xcopy /E /I /Y frontend\\grocery-frontend\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-frontend"
                 '''
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         // ===== BACKEND BUILD =====
         stage('Build Backend') {
             steps {
-                dir('backend/dress-backend') {
+                dir('backend/grocery-backend/') {
                     bat 'mvn clean package'
                 }
             }
@@ -41,13 +41,13 @@ pipeline {
         stage('Deploy Backend to Tomcat') {
             steps {
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\dress-backend.war" (
-                    del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\dress-backend.war"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-backend.war" (
+                    del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-backend.war"
                 )
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\dress-backend" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\dress-backend"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-backend" (
+                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\grocery-backend"
                 )
-                copy "backend\\dress-backend\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
+                copy "backend\\grocery-backend\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
                 '''
             }
         }
