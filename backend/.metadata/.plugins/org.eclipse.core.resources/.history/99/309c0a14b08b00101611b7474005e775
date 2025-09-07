@@ -1,0 +1,5 @@
+package com.example.grocery.repository;
+
+public class GroceryRepository {
+
+}

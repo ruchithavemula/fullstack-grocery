@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\grocery\backend\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3286007129.index
+3631523746.index
+1556031141.index
+3418534602.index
+761652871.index
