@@ -28,9 +28,16 @@ public class GroceryController {
 
     @PutMapping("/{id}")
     public GroceryItem update(@PathVariable Long id, @RequestBody GroceryItem item) {
-        item.setId(id);
-        return repository.save(item);
+        return repository.findById(id)
+                .map(existing -> {
+                    existing.setName(item.getName());
+                    existing.setQuantity(item.getQuantity());
+                    return repository.save(existing);
+                })
+                .orElseThrow(() -> new RuntimeException("Item not found with id " + id));
     }
+
+
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
