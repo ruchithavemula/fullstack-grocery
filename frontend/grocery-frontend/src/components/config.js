@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:2030/api/groceries";
+export const API_URL = "http://localhost:2030/grocery-backend/api/groceries";
 
 
 
