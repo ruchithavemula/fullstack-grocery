@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GroceryForm from './components/GroceryForm';
 import GroceryList from './components/GroceryList';
+import { API_URL } from './config';
 import './style.css';
 
 function App() {
@@ -8,9 +9,15 @@ function App() {
     const [editingItem, setEditingItem] = useState(null);
 
     const fetchGroceries = async () => {
-        const res = await fetch("http://localhost:8080/api/groceries");
-        const data = await res.json();
-        setGroceries(data);
+        try {
+            const res = await fetch(API_URL);  // use API_URL from config.js
+            if (!res.ok) throw new Error("Failed to fetch groceries");
+            const data = await res.json();
+            setGroceries(data);
+        } catch (err) {
+            console.error("Error fetching groceries:", err);
+            alert("Cannot connect to backend. Make sure the backend is running!");
+        }
     };
 
     useEffect(() => {
