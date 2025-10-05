@@ -31,7 +31,7 @@ pipeline {
         // ===== BACKEND BUILD =====
         stage('Build Backend') {
             steps {
-                dir('backend/grocery-backend/') {
+                dir('backend/grocery-backend') {
                     bat 'mvn clean package'
                 }
             }

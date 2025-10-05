@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import GroceryForm from './components/GroceryForm';
 import GroceryList from './components/GroceryList';
-import { API_URL } from './config';
+import { API_URL } from './components/config';
 import './style.css';
 
 function App() {
